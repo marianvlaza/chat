@@ -32,6 +32,9 @@
     "socketio": "~1.0.0",
     "zone.js": "^0.8.14"
   },
+  "engines": {
+    "node": "8.9.3"
+  },
   "devDependencies": {
     "@angular/cli": "1.6.1",
     "@angular/compiler-cli": "~4.4.6",
@@ -52,5 +55,17 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.3.4"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.1.",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marianvlaza/chat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/marianvlaza/chat/issues"
+  },
+  "homepage": "https://github.com/marianvlaza/chat#readme"
 }
