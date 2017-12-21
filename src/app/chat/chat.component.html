@@ -1,0 +1,110 @@
+<div class="container">
+  <div style="padding: 30px; text-align: center">
+    <h1>WELCOME TO THE FRAMEWORK EXAM CHAT SYSTEM</h1>
+  </div>
+  <ng-template #joinroom>
+      <div class="loginBody">
+        <div class="panel panel-login" style="border-width:10px;">
+          <div class="panel-heading">
+            <div class="row" style="text-align:center; padding-bottom:50px;">
+              <h2>Prepare to enter the Matrix!</h2>
+            </div>
+            <form (ngSubmit)="joinRoom()" #joinForm="ngForm">
+              <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" class="form-control" id="username" [(ngModel)]="newUser.users" name="nickname" placeholder="Nickname" required="" />
+              </div>
+              <div class="form-group">
+                <label for="select">Select chat room</label>
+                <select class="form-control" id="select" [(ngModel)]="newUser.chatRooms" name="room" title="chat" required="">
+                  <option value="Javascript">Javascript</option>
+                  <option value="Java">Java</option>
+                  <option value="Python">Python</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-success" [disabled]="!joinForm.form.valid">Enter the Matrix</button>
+              </div>
+            </form>
+            <br>
+            <br>
+            <form action="" >
+              <label for="room">Add new room</label>
+              <div class="input-group control-group after-add-more">
+                <input type="text" id="room" name="addmore[]" class="form-control" placeholder="Enter Room Name">
+                <div class="input-group-btn">
+                  <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  </ng-template>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-primary" *ngIf="joined; else joinroom">
+        <div class="panel-heading">
+          <span class="glyphicon glyphicon-comment"></span> {{ msgData.chatRooms }}
+          <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default btn-xs glyphicon glyphicon-off" style="color: red;" (click)="logout()">
+              Leave
+            </button>
+          </div>
+        </div>
+        <div #scrollMe class="panel-body">
+          <ul class="chat">
+            <li *ngFor="let c of chats">
+              <div class="left clearfix" *ngIf="c.users===msgData.users; else rightchat">
+								<span class="chat-img pull-left">
+									<img src="http://placehold.it/50/55C1E7/fff&text=ME" alt="User Avatar" class="img-circle" />
+								</span>
+                <div class="chat-body clearfix">
+                  <div class="header">
+                    <strong class="primary-font" style="padding-left: 10px;">{{ c.users }}</strong>
+                    <small class="pull-right text-muted">
+                      <span class="glyphicon glyphicon-time"></span>{{ c.updated_at | date: 'medium' }}
+                    </small>
+                  </div>
+                  <div style="overflow-wrap: break-word;">
+                    <p style="padding-left: 60px;">{{ c.chatMessages }}</p>
+                  </div>
+                </div>
+              </div>
+              <ng-template #rightchat>
+                <div class="right clearfix">
+									<span class="chat-img pull-right">
+										<img src="http://placehold.it/50/FA6F57/fff&text=U" alt="User Avatar" class="img-circle" />
+									</span>
+                  <div class="chat-body clearfix">
+                    <div class="header">
+                      <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{ c.updated_at | date: 'medium' }}</small>
+                      <strong class="pull-right primary-font" style="padding-right: 10px;">{{ c.users }}</strong>
+                    </div>
+                    <div style="overflow-wrap: break-word;">
+                      <p style="padding-right: 60px;"><strong class="pull-right primary-font">{{ c.chatMessages }}</strong></p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+          </ul>
+        </div>
+        <div class="panel-footer">
+          <form (ngSubmit)="sendMessage()" #msgForm="ngForm">
+            <div class="input-group">
+              <input type="hidden" [(ngModel)]="msgData.chatRooms" name="room" />
+              <input type="hidden" [(ngModel)]="msgData.users" name="nickname" />
+              <input id="btn-input" type="text" [(ngModel)]="msgData.chatMessages" name="message" class="form-control input-sm" placeholder="Type your message here..." required="" />
+              <span class="input-group-btn">
+									<button class="btn btn-warning btn-sm" id="btn-chat" [disabled]="!msgForm.form.valid">
+										Send
+									</button>
+								</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
