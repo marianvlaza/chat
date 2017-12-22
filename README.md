@@ -20,7 +20,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Run
 
-Run `npm start` to run the project. Navigate to http://localhost:3000 in your browser to open the project.
+Run `npm start` to run the project. Navigate to `http://localhost:3000/` in your browser to open the project.
 
 ## Running unit tests
 
