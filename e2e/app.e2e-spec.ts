@@ -9,6 +9,6 @@ describe('chat App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('WELCOME TO THE FRAMEWORK EXAM CHAT SYSTEM');
   });
 });
